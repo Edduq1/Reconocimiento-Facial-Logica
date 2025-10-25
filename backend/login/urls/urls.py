@@ -1,26 +1,18 @@
 from django.urls import path
-from .views.views import (
-    index,
-    login_view,
-    register_view,
-    mantenimiento_view,
-    logout_view,
-    api_encode,
-    api_login,
-    db_check,
-    api_debug_decode,
-)
+# Importamos las NUEVAS vistas que crearemos en el siguiente paso
+from .views.views import MultiStageLoginView, UserDataView 
+
+# Importamos la vista de logout que nos da SimpleJWT
+from rest_framework_simplejwt.views import TokenBlacklistView
 
 urlpatterns = [
-    path('', index, name='index'),
-    path('login/', login_view, name='login'),
-    path('register/', register_view, name='register'),
-    path('mantenimiento/', mantenimiento_view, name='mantenimiento'),
-    path('logout/', logout_view, name='logout'),
-
-    # APIs
-    path('api/encode/', api_encode, name='api_encode'),
-    path('api/login/', api_login, name='api_login'),
-    path('api/db-check/', db_check, name='db_check'),
-    path('api/debug-decode/', api_debug_decode, name='api_debug_decode'),
+    
+    # Endpoint: POST /api/v1/auth/login 
+    path('auth/login', MultiStageLoginView.as_view(), name='api_login'),
+    
+    # Endpoint: GET /api/v1/auth/me 
+    path('auth/me', UserDataView.as_view(), name='api_me'),
+    
+    # Endpoint: POST /api/v1/auth/logout 
+    path('auth/logout', TokenBlacklistView.as_view(), name='api_logout'),
 ]

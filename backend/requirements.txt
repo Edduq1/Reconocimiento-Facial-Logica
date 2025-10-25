@@ -6,6 +6,8 @@ numpy>=2.1.3
 opencv-python>=4.10.0.84
 python-dotenv>=1.0.1
 
+djangorestframework
+djangorestframework-simplejwt
 # Opcional (may fallar en Windows/Python 3.13):
 # face-recognition==1.3.0
 # dlib (requerido por face-recognition) no siempre tiene wheel para 3.13.
