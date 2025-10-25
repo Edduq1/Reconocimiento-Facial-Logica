@@ -1,0 +1,13 @@
+# 1. El entorno virtual (¡El más importante!)
+env/
+
+# 2. Secretos
+.env
+
+# 3. Cache de Python
+__pycache__/
+
+# 4. Logs
+logs/
+*.log
+facial_debug.log
